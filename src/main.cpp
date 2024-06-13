@@ -40,17 +40,13 @@ void findpath(std::istream &ifs)
     {
         auto vt = tokenize(line);
 
-        bool firstcol = true;
         for (auto &e : vt)
         {
-            if (firstcol)
-                firstcol = false;
-            else
-                vHeight.push_back(atof(e.c_str()));
+            vHeight.push_back(atof(e.c_str()));
         }
         if (colcount == -1)
-            colcount = vt.size() - 1;
-        else if (colcount != vt.size() - 1)
+            colcount = vt.size();
+        else if (colcount != vt.size())
             throw std::runtime_error(
                 "variable column count");
         rowCount++;
@@ -98,13 +94,23 @@ void findpath(std::istream &ifs)
     std::cout << " total energy " << res.second << "\n";
 }
 
-
 main()
 {
     std::string sin =
-        "o 1 2 3\n"
-        "o 2 3 1\n"
-        "o 3 2 1\n";
+        "1 1 1 0 1 1 1 1 1 1\n"
+        "1 1 1 1 0 1 1 1 1 1\n"
+        "1 1 1 1 0 1 1 1 1 1\n"
+        "1 1 1 1 1 0 1 1 1 1\n"
+        "1 1 1 1 1 0 1 1 1 1\n"
+        "1 1 1 1 0 1 1 1 1 1\n"
+        "1 1 1 0 1 1 1 1 1 1\n"
+        "1 1 1 1 0 1 1 1 1 1\n"
+        "1 1 1 1 0 1 1 1 1 1\n"
+        "1 1 1 1 1 0 1 1 1 1\n";
+
+    // "o 1 2 3\n"
+    // "o 2 3 1\n"
+    // "o 3 2 1\n";
     std::istringstream ifs(sin);
     findpath(ifs);
 
